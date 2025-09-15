@@ -18,7 +18,7 @@ export const getTransaction = async (req, res) => {
     const transactions = await Transaction.find({});
     res
       .status(200)
-      .json({ transactions, success: true, message: " transactions" });
+      .json({ transactions, success: true, message: "transactions" });
   } catch (error) {
     next(error);
   }
@@ -26,13 +26,22 @@ export const getTransaction = async (req, res) => {
 export const addTransaction = async (req, res, next) => {
   const { amount, type, category, note } = req.body;
   try {
-    const transaction = await Transaction.create({
-      amount: amount,
-      type: type,
-      category: category,
-      note: note,
-    });
-    res.status(200).json({ transaction });
+    if (amount && type && category && note) {
+      const transaction = await Transaction.create({
+        amount: amount,
+        type: type,
+        category: category,
+        note: note,
+      });
+      res
+        .status(200)
+        .json({ success: true, message: "added transaction", transaction });
+    } else {
+      res.status(400).json({
+        success: false,
+        message: "please enter input",
+      });
+    }
   } catch (error) {
     next(error);
   }
