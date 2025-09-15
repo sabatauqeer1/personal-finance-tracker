@@ -32,8 +32,28 @@ export const addTransaction = async (req, res) => {
   }
 };
 export const deleteTransaction = async (req, res) => {
+  const { id } = req.params;
   try {
+    const transaction = await Transaction.findByIdAndDelete({ _id: id });
+    res.status(200).json({
+      success: true,
+      message: "deleted transaction",
+    });
   } catch (error) {
-    res.status(500).json({ message: "Failed to fetch transactions" });
+    throw error;
+  }
+};
+export const updateTransaction = async (req, res) => {
+  const { amount, type, note } = req.body;
+  try {
+    if (amount || type || note) {
+      const transaction = await Transaction.findByIdAndUpdate({ _id: id });
+      res.status(200).json({
+        success: true,
+        message: "transaction updated",
+      });
+    }
+  } catch (error) {
+    throw error;
   }
 };
