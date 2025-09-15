@@ -1,6 +1,7 @@
 import express from "express";
 import { db } from "./config/db.js";
 import router from "./routes/transactionRoutes.js";
+import { errorHandler } from "./middleware/errorHandler.js";
 import { configDotenv } from "dotenv";
 import cors from "cors";
 
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/personalfinancetracker", router);
+app.use(errorHandler);
 
 app.listen(PORT, () => {
   db();

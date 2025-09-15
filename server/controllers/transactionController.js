@@ -14,7 +14,7 @@ export const getTransaction = async (req, res) => {
     const transactions = await Transaction.find({});
     res.status(200).json({ transactions });
   } catch (error) {
-    res.status(500).json({ message: "Failed to fetch transactions" });
+    throw error;
   }
 };
 export const addTransaction = async (req, res) => {
@@ -28,7 +28,7 @@ export const addTransaction = async (req, res) => {
     });
     res.status(200).json({ transaction });
   } catch (error) {
-    res.status(500).json({ message: "Failed to fetch transactions" });
+    throw error;
   }
 };
 export const deleteTransaction = async (req, res) => {
