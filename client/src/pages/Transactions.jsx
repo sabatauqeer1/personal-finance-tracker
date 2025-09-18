@@ -1,20 +1,22 @@
 import { useState, useEffect } from "react";
 import { getTransactions } from "../services/api";
+import TransactionForm from "../components/TransactionForm";
 export default function Transactions() {
   const [transactions, setTransactions] = useState([]);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getTransactions();
-        setTransactions(data.transactions);
-      } catch (error) {
-        console.error("Failed to fetch transactions", error);
-      }
+  async function fetchData() {
+    try {
+      const data = await getTransactions();
+      setTransactions(data.transactions);
+    } catch (error) {
+      console.error("Failed to fetch transactions", error);
     }
+  }
+  useEffect(() => {
     fetchData();
   }, []);
   return (
-    <div className="p-4">
+    <div>
+      <TransactionForm refresh={fetchData} />
       <h1 className="text-xl font-bold mb-4">All Transactions</h1>
 
       {transactions.length > 0 ? (
