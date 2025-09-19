@@ -11,3 +11,9 @@ export async function addTransaction(formData) {
 
   return console.log("posted");
 }
+
+export async function deleteTransaction(id) {
+  const response = await axios.delete(`${API_BASE}/${id}`);
+
+  return console.log("deleted");
+}

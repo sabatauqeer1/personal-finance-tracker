@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { getTransactions } from "../services/api";
 import TransactionForm from "../components/TransactionForm";
+import TransactionDelete from "../components/TransactionDelete";
+
 export default function Transactions() {
   const [transactions, setTransactions] = useState([]);
   async function fetchData() {
@@ -14,17 +16,19 @@ export default function Transactions() {
   useEffect(() => {
     fetchData();
   }, []);
+
   return (
     <div>
       <TransactionForm refresh={fetchData} />
-      <h1 className="text-xl font-bold mb-4">All Transactions</h1>
+      <h1>All Transactions</h1>
 
       {transactions.length > 0 ? (
         transactions.map((t) => (
-          <div key={t._id} className="border p-2 rounded mb-2">
+          <div key={t._id}>
             <p>Amount:{t.amount}</p>
             <p>Type: {t.type}</p>
             <p>Note: {t.note}</p>
+            <TransactionDelete refresh={fetchData} id={t._id} />
           </div>
         ))
       ) : (
