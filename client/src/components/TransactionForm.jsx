@@ -19,6 +19,9 @@ export default function TransactionForm({ refresh }) {
     if (!e.target.category.value.trim()) {
       newErrors.category = "Category is required";
     }
+    if (!e.target.note.value.trim()) {
+      newErrors.note = "note is required";
+    }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -53,7 +56,7 @@ export default function TransactionForm({ refresh }) {
       <label htmlFor="category"> category</label>
       <input type="text" name="category" id="category"></input>
       {errors.category && <small>{errors.category}</small>}
-      <button type="sumbit"> sumbit</button>
+      <button type="sumbit">{loading ? "Saving..." : "Add Transaction"}</button>
     </form>
   );
 }
