@@ -40,6 +40,8 @@ export default function TransactionEdit({ refresh, editingTransaction }) {
     setLoading(true);
     await updateTransaction(editingTransaction._id, formData); 
     await refresh(); 
+   await e.target.reset()
+   
     console.log("Transaction updated successfully!");
   } catch (err) {
     console.error("Error during update or refresh:", err.msg);
