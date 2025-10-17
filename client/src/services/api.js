@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_BASE = "http://localhost:3001/api/personalfinancetracker";
+const API_BASE = "https://personal-finance-tracker-fsm6.onrender.com";
 export async function getTransactions() {
   const response = await axios.get(API_BASE);
   return response.data;
