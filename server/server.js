@@ -1,6 +1,6 @@
 import express from "express";
 import { db } from "./config/db.js";
-import router from "./router/routes.js";
+import router from "./routes/transactionRoutes.js";
 import { configDotenv } from "dotenv";
 import cors from "cors";
 import path from "path";
