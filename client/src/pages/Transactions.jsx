@@ -32,10 +32,14 @@ export default function Transactions() {
             <p>Type: {t.type}</p>
             <p>Note: {t.note}</p>
             <TransactionDelete refresh={fetchData} id={t._id} />
+ <button onClick={() => setEditingTransaction(t)}>Edit</button>
 
-            <button onClick={() => setedit(true)}>edit</button>
-            {edit && (
-              <TransactionEdit refresh={fetchData} editingTransaction={edit} />
+            {editingTransaction?._id === t._id && (
+              <TransactionEdit
+                refresh={fetchData}
+                editingTransaction={editingTransaction}
+                onClose={() => setEditingTransaction(null)}
+              />
             )}
           </div>
         ))
