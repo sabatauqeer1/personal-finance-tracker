@@ -42,7 +42,7 @@ export default function TransactionEdit({ refresh, editingTransaction }) {
     await refresh(); 
     console.log("Transaction updated successfully!");
   } catch (err) {
-    console.error("Error during update or refresh:", err);
+    console.error("Error during update or refresh:", err.msg);
   } finally {
     setLoading(false);
   }
