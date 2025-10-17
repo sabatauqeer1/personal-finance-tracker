@@ -61,7 +61,7 @@ export default function TransactionEdit({ refresh, editingTransaction }) {
       <label htmlFor="category"> category</label>
       <input type="text" name="category" id="category"></input>
       {errors.category && <small>{errors.category}</small>}
-      <button type="sumbit">{loading ? "Saving..." : "Add Transaction"}</button>
+      <button type="submit">{loading ? "Saving..." : "Add Transaction"}</button>
     </form>
   );
 }
