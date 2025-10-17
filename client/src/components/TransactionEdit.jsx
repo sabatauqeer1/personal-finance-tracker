@@ -36,11 +36,16 @@ export default function TransactionEdit({ refresh, editingTransaction }) {
       category: formDataObj.get("category"),
     };
     console.log(formData);
-
+ try {
     setLoading(true);
-    await updateTransaction(editingTransaction._id, formData);
+    await updateTransaction(editingTransaction._id, formData); 
+    await refresh(); 
+    console.log("Transaction updated successfully!");
+  } catch (err) {
+    console.error("Error during update or refresh:", err);
+  } finally {
     setLoading(false);
-    refresh();
+  }
   };
   return (
     <form onSubmit={handleSubmit}>
