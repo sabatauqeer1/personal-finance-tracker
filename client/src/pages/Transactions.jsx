@@ -6,7 +6,7 @@ import TransactionEdit from "../components/TransactionEdit";
 
 export default function Transactions() {
   const [transactions, setTransactions] = useState([]);
-  const [edit, setedit] = useState(false);
+  const [editingTransaction, setEditingTransaction] = useState(null);
 
   async function fetchData() {
     try {
