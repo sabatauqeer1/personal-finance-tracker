@@ -1,14 +1,15 @@
 import express from "express";
 import { db } from "./config/db.js";
-import router from "./routes/transactionRoutes.js";
-import { errorHandler } from "./middleware/errorHandler.js";
+import router from "./router/routes.js";
 import { configDotenv } from "dotenv";
 import cors from "cors";
+import path from "path";
 
 configDotenv({ path: "./.env" });
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const __dirname = path.resolve();
 
 app.use(
   cors({
@@ -23,7 +24,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use("/api/personalfinancetracker", router);
-app.use(errorHandler);
+app.use(express.static(path.join(__dirname, "../client/build")));
+app.get(/(.*)/, (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+});
 
 app.listen(PORT, () => {
   db();

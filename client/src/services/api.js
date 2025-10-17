@@ -17,3 +17,9 @@ export async function deleteTransaction(id) {
 
   return console.log("deleted");
 }
+
+export async function updateTransaction(id, formData) {
+  const response = await axios.patch(`${API_BASE}/${id}`, formData);
+
+  return console.log("updated");
+}
