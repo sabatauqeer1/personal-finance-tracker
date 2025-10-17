@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { updateTransaction } from "../services/api";
-export default function TransactionEdit({ refresh }) {
+export default function TransactionEdit({ refresh, editingTransaction }) {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -38,10 +38,9 @@ export default function TransactionEdit({ refresh }) {
     console.log(formData);
 
     setLoading(true);
-    await updateTransaction(e.target._id, formData);
+    await updateTransaction(editingTransaction._id, formData);
     setLoading(false);
     refresh();
-    e.target.reset();
   };
   return (
     <form onSubmit={handleSubmit}>

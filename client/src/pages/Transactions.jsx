@@ -34,7 +34,9 @@ export default function Transactions() {
             <TransactionDelete refresh={fetchData} id={t._id} />
 
             <button onClick={() => setedit(true)}>edit</button>
-            {edit && <TransactionEdit />}
+            {edit && (
+              <TransactionEdit refresh={fetchData} editingTransaction={edit} />
+            )}
           </div>
         ))
       ) : (
