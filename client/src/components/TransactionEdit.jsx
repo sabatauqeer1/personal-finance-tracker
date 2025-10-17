@@ -38,7 +38,7 @@ export default function TransactionEdit({ refresh }) {
     console.log(formData);
 
     setLoading(true);
-    await updateTransaction(formData);
+    await updateTransaction(transaction._id, formData);
     setLoading(false);
     refresh();
     e.target.reset();
